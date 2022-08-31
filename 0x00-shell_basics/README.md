@@ -10,3 +10,4 @@ the script 8-firstdelete deletes the file Betty
 the script 9-firstdirdeletion deletes the my_first_directory
 the script 10-back changes working directory to the previous one
 the script 11-lists lists all files plus the ones in parent dir
+the script 12-file_type prints the type of file named iamafile
