@@ -12,3 +12,4 @@ the script 10-back changes working directory to the previous one
 the script 11-lists lists all files plus the ones in parent dir
 the script 12-file_type prints the type of file named iamafile
 the script 13-symbolic_link links _ls_ to /bin/ls
+the script 14-copy_html copies html files to parent folder
