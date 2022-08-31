@@ -5,3 +5,4 @@ The script 3-listfiles displays the current directory content in long format
 The script 4-listmorefiles displays contents including hidden files
 The script 5-listfilesdigitonly displays long format and user ID
 The script 6-firstdirectory creates a directory in tmp directory
+the script 7-movethatfile moves a file from tmp to my_first_directory
