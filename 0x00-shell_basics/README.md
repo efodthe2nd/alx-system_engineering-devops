@@ -3,3 +3,4 @@ The script 1-listit displays the content list of current directory
 The script 2-bring_me_home changes the working directory to the user's home directory
 The script 3-listfiles displays the current directory content in long format
 The script 4-listmorefiles displays contents including hidden files
+The script 5-listfilesdigitonly displays long format and user ID
