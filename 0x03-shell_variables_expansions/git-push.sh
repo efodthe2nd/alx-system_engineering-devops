@@ -7,6 +7,4 @@ if [ -n "$(git status - porcelain)" ]; then
 	git status
 	echo "Pushing data to remote server!!!"
 	git push
-else
-	echo "Tree is clean"
 
