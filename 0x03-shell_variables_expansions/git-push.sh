@@ -5,7 +5,7 @@ git add .
 git commit -m"${message}"
 if [ -n "$(git status - porcelain)" ];
 then
-	echo "IT IS CLEAN"
+	echo "TREE UP-TO-DATE"
 else
 	git status
 	echo "Pushing data to remote server!!!"
