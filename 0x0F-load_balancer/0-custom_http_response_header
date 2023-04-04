@@ -1,7 +1,7 @@
-#!/usr/bin/env/bash
+#!/usr/bin/env bash
 # configure the server with new and updated parameters
 
-apt-get update -y && apt-get upgrader -y
+apt-get update -y && apt-get upgrade -y
 apt-get install nginx -y
 chown -R "$USER":"$USER" /var/www/html
 echo "Hello World!" > /var/www/html/index.nginx-debian.html
