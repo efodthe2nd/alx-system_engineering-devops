@@ -1,24 +1,33 @@
 #!/usr/bin/env bash
-# configure the server with new and updated parameters
+# configure web-02 to be identical to web-01
+# The name of the custom HTTP header must be X-Served-By
+# The value of the custom HTTP header must be the hostname of the server
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+sudo mkdir -p /var/www/html /var/www/error
+sudo chmod -R 755 /var/www
+echo 'Hello World!' > /var/www/html/index.html
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+server_config=\
+"server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	root /var/www/html;
+	index index.html index.htm index.nginx-debian.html;
+	server_name _;
+	add_header X-Served-By \$hostname;
+	location / {
+		try_files \$uri \$uri/ =404;
+	}
+	if (\$request_filename ~ redirect_me) {
+		rewrite ^ https://youtube.com permanent;
+	}
+	error_page 404 /404.html;
+	location = /404.html {
+		internal;
+	}
+}"
 
-apt-get update -y && apt-get upgrade -y
-apt-get install nginx -y
-chown -R "$USER":"$USER" /var/www/html
-echo "Hello World!" > /var/www/html/index.nginx-debian.html
-
-q='"'
-host=$(hostname)
-line3="\\\tadd_header X-Served-By $q$host$q;"
-sed -i "24i $line3" /etc/nginx/sites-available/default
-
-line="\\\\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}"
-sed -i "48i $line" /etc/nginx/sites-available/default
-
-mkdir -p /var/www/default
-echo "Ceci n'est pas une page" > /var/www/default/404.html
-line1="\\\tlocation = /404.html {\n\t\t root /var/www/default;\n\t}"
-sed -i "29i $line1" /etc/nginx/sites-available/default
-line2="\\\terror_page 404 /404.html;"
-sed -i "32i $line2" /etc/nginx/sites-available/default
-
-service nginx restart
+echo "$server_config" > /etc/nginx/sites-enabled/default
+sudo service nginx restart
