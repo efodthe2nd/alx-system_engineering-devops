@@ -23,11 +23,11 @@ if __name__ == '__main__':
             todos = list(filter(lambda x: x.get('userId') == id, todos_res))
             todos_done = list(filter(lambda x: x.get('completed'), todos))
             print(
-                    'Employee {} is done with tasks({}/{}):'.format(
-                        user_name,
-                        len(todos_done),
-                        len(todos)
-                    )
+                'Employee {} is done with tasks({}/{}):'.format(
+                    user_name,
+                    len(todos_done),
+                    len(todos)
+                )
             )
             for todo_done in todos_done:
                 print('\t {}'.format(todo_done.get('title')))
